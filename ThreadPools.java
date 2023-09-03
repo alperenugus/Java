@@ -1,9 +1,9 @@
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 class Order{
     static int expectedConcurrentOrders = 100;
-    static Executor threadPool = Executors.newFixedThreadPool(expectedConcurrentOrders);
+    static ExecutorService threadPool = Executors.newFixedThreadPool(expectedConcurrentOrders);
     Order(Integer name){
         this.name = name.toString();
     }
@@ -32,5 +32,6 @@ public class ThreadPools {
         Order.receiveAndExecuteClientOrders(order3);
         Order.receiveAndExecuteClientOrders(order4);
         Order.receiveAndExecuteClientOrders(order5);
+        Order.threadPool.shutdown();
     }
 }
